@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ViewTaskList() {
+export default function ViewTaskList({ tasks, deleteTask }) {
   return (
     <div>
       <h2>Task List (placeholder)</h2>
