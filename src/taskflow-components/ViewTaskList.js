@@ -1,51 +1,76 @@
-import React from 'react';
-import { Card, Badge, Row, Col, Button } from 'react-bootstrap';
+import React from "react";
+import { Card, Button, Badge, Row, Col } from "react-bootstrap";
 
 export default function ViewTaskList({ tasks, deleteTask }) {
-  const getVariant = (p) => (p === 'High' ? 'danger' : p === 'Medium' ? 'warning' : 'success');
+  const getPriorityVariant = (priority) => {
+    switch (priority) {
+      case "High":
+        return "danger";
+      case "Medium":
+        return "warning";
+      case "Low":
+        return "success";
+      default:
+        return "secondary";
+    }
+  };
 
   return (
     <div className="py-3">
-      <h4 className="mb-4 fw-bold text-secondary">
-        {tasks.length} {tasks.length === 1 ? 'Task' : 'Tasks'}
-      </h4>
+      <h5 className="mb-4 fw-bold text-secondary">
+        {tasks.length} {tasks.length === 1 ? "Task" : "Tasks"}
+      </h5>
 
-      {tasks.length === 0 ? (
-        <div className="p-4 bg-light rounded-3 shadow-sm">No tasks available.</div>
-      ) : (
-        <Row xs={1} sm={2} md={2} lg={3} className="g-4">
-          {tasks.map((task) => (
+      <Row xs={1} sm={2} md={2} lg={2} className="g-4">
+        {tasks.length === 0 ? (
+          <p className="text-muted">No tasks available.</p>
+        ) : (
+          tasks.map((task) => (
             <Col key={task.id}>
               <Card
-                className="h-100 shadow-sm border-0"
-                style={{ borderRadius: 12, transition: 'transform .16s ease, box-shadow .16s ease' }}
+                className="shadow-lg border-0 h-100"
+                style={{
+                  borderRadius: "12px",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)';
-                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.12)';
+                  e.currentTarget.style.transform = "translateY(-5px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 20px rgba(0,0,0,0.15)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 10px rgba(0,0,0,0.1)";
                 }}
               >
-                <Card.Body className="d-flex flex-column justify-content-between">
-                  <div>
-                    <div className="d-flex justify-content-between align-items-start mb-2">
-                      <Card.Title className="mb-0">{task.title}</Card.Title>
-                      {task.priority && <Badge bg={getVariant(task.priority)}>{task.priority}</Badge>}
-                    </div>
-                    <Card.Text className="text-muted small">{task.description}</Card.Text>
+                <Card.Body>
+                  <div className="d-flex justify-content-between align-items-start mb-2">
+                    <Card.Title className="fw-semibold text-dark">
+                      {task.title}
+                    </Card.Title>
+                    {task.priority && (
+                      <Badge bg={getPriorityVariant(task.priority)}>
+                        {task.priority}
+                      </Badge>
+                    )}
                   </div>
-
-                  <div className="d-flex justify-content-end">
-                    <Button variant="outline-danger" size="sm" onClick={() => deleteTask(task.id)}>Delete</Button>
-                  </div>
+                  <Card.Text className="text-muted mb-3">
+                    {task.description}
+                  </Card.Text>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => deleteTask(task.id)}
+                  >
+                    Delete
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>
-          ))}
-        </Row>
-      )}
+          ))
+        )}
+      </Row>
     </div>
   );
 }
