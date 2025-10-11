@@ -1,0 +1,10 @@
+body {
+  background-color: #f4f7fb;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222;
+}
+
+.navbar .nav-link {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
