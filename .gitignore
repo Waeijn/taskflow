@@ -1,0 +1,15 @@
+# Ignore
+*
+
+# Keep
+!.gitignore
+!src/
+!public/
+!package.json
+!package-lock.json
+!Dockerfile
+!docker-compose.yml
+!docker-compose.prod.yml
+!nginx.conf
+!start-dev.ps1
+!start-prod.ps1
