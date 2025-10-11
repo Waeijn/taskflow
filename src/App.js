@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './taskflow-components/Navbar';
 import Home from './taskflow-components/Home';
 import AddTaskView from './taskflow-components/AddTaskView';
@@ -7,12 +8,15 @@ import './App.css';
 
 export default function App() {
   return (
-    <div>
+    <Router>
       <Navbar />
       <div className="container mt-4">
-        <Home />
-        {/* Task 2 */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add" element={<AddTaskView />} />
+          <Route path="/tasks" element={<ViewTaskList />} />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
