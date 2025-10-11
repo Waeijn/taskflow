@@ -1,10 +1,15 @@
-# Ignore
+# Ignore everything by default
 *
 
-# Keep
-!.gitignore
+# Keep these folders and their contents
 !src/
+!src/**
+
 !public/
+!public/**
+
+# Keep necessary root-level files
+!.gitignore
 !package.json
 !package-lock.json
 !Dockerfile
