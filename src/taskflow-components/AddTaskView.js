@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Terrence John Manlapaz
 export default function AddTaskView({ addTask }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
